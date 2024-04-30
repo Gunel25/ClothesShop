@@ -37,6 +37,8 @@ namespace ClothesShop.Controllers
             appDbContext.SaveChanges();
             return RedirectToAction("Index");
         }
+
+  
         public JsonResult Delete(int id)
         {
             if (id == 0)
@@ -46,7 +48,6 @@ namespace ClothesShop.Controllers
                     status = 400
                 });
             }
-
             var model = appDbContext.Products.Find(id);
             if (model != null)
             {
