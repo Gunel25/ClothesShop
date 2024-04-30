@@ -288,6 +288,15 @@ body[data-layout=horizontal] .page-content {
         font-size: 16px !important
     }
 
+/*.footer {
+    bottom: 0;
+    padding: 20px calc(24px * .75);
+    color: var(--bs-footer-color);
+    left: 250px;
+    height: 60px;
+    background-color: var(--bs-footer-bg)
+}*/
+
 .footer {
     bottom: 0;
     padding: 20px calc(24px * .75);
@@ -296,7 +305,6 @@ body[data-layout=horizontal] .page-content {
     height: 60px;
     background-color: var(--bs-footer-bg)
 }
-
 @media (max-width:991.98px) {
     .footer {
         left: 0

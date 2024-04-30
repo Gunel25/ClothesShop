@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ClothesShop.Models
 {
@@ -10,6 +11,7 @@ namespace ClothesShop.Models
         public double Price { get; set; }
         public int CategoryId { get; set; }
         [ForeignKey("CategoryId")]
+        [ValidateNever]
         public Category Category { get; set; }
     }
 }
