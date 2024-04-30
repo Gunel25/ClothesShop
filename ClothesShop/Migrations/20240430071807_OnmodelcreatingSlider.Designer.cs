@@ -3,6 +3,7 @@ using ClothesShop.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ClothesShop.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240430071807_OnmodelcreatingSlider")]
+    partial class OnmodelcreatingSlider
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -121,17 +124,17 @@ namespace ClothesShop.Migrations
                         {
                             Id = 1,
                             Description = "Ürünümüz unisex olduğundan kadın ve erkek için uygundur.",
-                            ImgUrl = "cart-item-2.jpg",
-                            IsCheck = true,
-                            Title = "Oversize Bisiklet Yaka Pamuk Baskılı Kısa Kollu Tişört"
+                            ImgUrl = "txt",
+                            IsCheck = false,
+                            Title = "Unisex Oversize Bisiklet Yaka Pamuk Pink Duck Baskılı Kısa Kollu Tişört"
                         },
                         new
                         {
                             Id = 2,
                             Description = "Modelin Ölçüleri: Boy: 1.70, Göğüs: 87, Bel: 65, Kalça: 93, Beden:S/34/1 Stüdyo çekimlerinde renkler ışık farklılığından dolayı değişiklik gösterebilir.\r\n",
-                            ImgUrl = "cart-item-1.jpg",
-                            IsCheck = true,
-                            Title = "Kadın Dik Yaka Uzun Kollu Bluz"
+                            ImgUrl = "txt",
+                            IsCheck = false,
+                            Title = "Kadın Beyaz Beyaz Wave Desen Dik Yaka Uzun Kollu Bluz"
                         });
                 });
 
