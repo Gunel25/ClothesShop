@@ -51,7 +51,6 @@ namespace ClothesShop.Controllers
             var model = appDbContext.Products.Find(id);
             if (model != null)
             {
-                appDbContext.Products.Remove(model);
                 appDbContext.SaveChanges();
             }
             return Json(new

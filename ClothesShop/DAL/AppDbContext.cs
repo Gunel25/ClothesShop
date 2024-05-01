@@ -1,9 +1,10 @@
 ﻿using ClothesShop.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace ClothesShop.DAL
 {
-    public class AppDbContext:DbContext
+    public class AppDbContext: IdentityDbContext<ProgramUser>
     {
         public AppDbContext(DbContextOptions options):base(options) { }
         public DbSet<Slider> Sliders { get; set; }

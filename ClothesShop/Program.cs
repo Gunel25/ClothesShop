@@ -1,4 +1,6 @@
 using ClothesShop.DAL;
+using ClothesShop.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Data.Common;
 
@@ -10,8 +12,11 @@ builder.Services.AddDbContext<AppDbContext>(option =>
 {
     option.UseSqlServer(builder.Configuration.GetConnectionString("DbConnection"));
 });
-var app = builder.Build();
+builder.Services.AddIdentity<ProgramUser, IdentityRole>()
+    .AddEntityFrameworkStores<AppDbContext>()
+    .AddDefaultTokenProviders();
 
+var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {

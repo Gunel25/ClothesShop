@@ -105,34 +105,6 @@
             });
         });
 
-        $(document).ready(() => {
-            //Edit(Get)
-            $(document).on('click', '.editBtn', (e) => {
-                const id = $(e.currentTarget).data('id');
-
-                $.ajax({
-                    url: `/Admin/Slider/Edit/${id}`,
-                    type: 'GET',
-                    success: (response) => {
-                        console.log(response)
-                        if (response.hasOwnProperty('status') && response.status === 400) {
-                            alert('tapilmadi');
-                        }
-                        else {
-                            console.log(response);
-                            $('#SliderEditForm input[name="Id"]').val(response.id);
-                            $('#SliderEditForm input[name="SubTitle"]').val(response.subTitle);
-                            $('#SliderEditForm input[name="Description"]').val(response.description);
-                            $('#SliderEditForm input[name="Title"]').val(response.title);
-
-                        }
-                    }
-                });
-            });
-
-
-        });
-
 
     </script>
 }
