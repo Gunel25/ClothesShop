@@ -1,0 +1,35 @@
+﻿@model RegisterVM
+<section class="login-register container">
+    <h1>Register</h1>
+    <form asp-controller="Account" asp-action="Register" method="post" class="mt-4 mb-2 needs-validation" >
+        <div class="pb-3"></div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <label>Email address</label>
+        <div class="form-floating mb-3">
+            <input asp-for="Email" type="email" class="form-control form-control_gray" required>
+            <span style="color:red" asp-validation-for="Email"></span>
+        </div>
+        <div class="pb-3"></div>
+
+        <label>Password</label>
+        <div class="form-floating mb-3">
+            <input asp-for="Password" type="password" class="form-control form-control_gray" required>
+            <span style="color:red" asp-validation-for="Password"></span>
+        </div>
+
+        <label>ConfirmPassword</label>
+        <div class="form-floating mb-3">
+            <input asp-for="ConfirmPassword" type="password" class="form-control form-control_gray" required>
+            <span style="color:red" asp-validation-for="ConfirmPassword"></span>
+        </div>
+
+        <div class="d-flex align-items-center mb-2 pb-2">
+            <label style="margin-right: 10px;">Remember me</label>
+            <input asp-for="IsRemember" class="mt-2 form-check"/> 
+        </div>
+
+        <button class="btn btn-primary w-100 text-uppercase" type="submit">Register</button>
+    </form>
+
+</section>

@@ -17,14 +17,17 @@ namespace ClothesShop.Areas.Admin.Controllers
             appDbContext = _appDbContext;
             _env = env;
         }
+
         public IActionResult Index()
         {
             return View(appDbContext.Sliders.ToList());
         }
+
         public IActionResult Create()
         {
             return View();
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Slider slider)

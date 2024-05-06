@@ -48,7 +48,7 @@
 
     </div>
 </div><!-- End Page-content -->
-<!-- Modal -->
+<!-- Modal Create-->
 <div class="modal fade" id="CategoryCreate" tabindex="-1" aria-labelledby="CategoryCreateLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -76,12 +76,13 @@
     </div>
 </div>
 
+<!-- Modal Edit-->
 
-<div class="modal fade" id="exampleModalEdit" tabindex="-1" aria-labelledby="CategoryEditFormLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModalEdit" tabindex="-1" aria-labelledby="exampleModalEditLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="CategoryEditFormLabel">Edit Category</h1>
+                <h1 class="modal-title fs-5" id="exampleModalEditLabel">Edit Category</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -172,8 +173,7 @@
                         else {
                             console.log(response);
                             $('#CategoryEditForm input[name="Id"]').val(response.id);
-                            $('#CategoryEditForm input[name="Name"]').val(response.Name);
-                            $('#CategoryEditForm input[name="Surname"]').val(response.Surname);
+                            $('#CategoryEditForm input[name="Name"]').val(response.name);
                         }
                     }
                 });
