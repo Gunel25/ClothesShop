@@ -1,15 +1,15 @@
 ﻿using ClothesShop.Migrations;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using Stripe.Climate;
 
 namespace ClothesShop.Models
 {
-    public class ProgramUser:IdentityUser
+    public class ProgramUser:IdentityUser<int>
     {
-        public int Id { get; set; }
         public string? Name { get; set; }
         public string? Surname { get; set; }
-        [ValidateNever]
-        public List<Orders> Orders { get; set; }
+        public List<Order> Orders { get; set; }
+
     }
 }

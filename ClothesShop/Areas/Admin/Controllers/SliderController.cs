@@ -2,12 +2,14 @@
 using ClothesShop.DAL;
 using ClothesShop.Extensions;
 using ClothesShop.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace ClothesShop.Areas.Admin.Controllers
 {
     [Area("Admin")]
+   // [Authorize(Roles = "Admin")]
     public class SliderController : Controller
     {
         private readonly AppDbContext appDbContext;

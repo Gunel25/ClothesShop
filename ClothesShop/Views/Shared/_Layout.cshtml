@@ -229,7 +229,7 @@
                             </div>
                         </li>
                         <li class="navigation__item">
-                            <a href="#" class="navigation__link js-nav-right d-flex align-items-center">Shop<svg class="ms-auto" width="7" height="11" viewBox="0 0 7 11" xmlns="http://www.w3.org/2000/svg"><use href="#icon_next_sm" /></svg></a>
+                            <a asp-controller="Home" asp-action="Shop5" class="navigation__link js-nav-right d-flex align-items-center">Shop<svg class="ms-auto" width="7" height="11" viewBox="0 0 7 11" xmlns="http://www.w3.org/2000/svg"><use href="#icon_next_sm" /></svg></a>
                                                      
                         </li>
                         <li class="navigation__item">
@@ -326,7 +326,7 @@
                         <a asp-controller="Home" asp-action="Index" class="navigation__link">Home</a>
                     </li>
                     <li class="navigation__item">
-                        <a href="#" class="navigation__link">Shop</a>                      
+                        <a asp-controller="Home" asp-action="Shop5" class="navigation__link">Shop</a>
                     </li>                                
                   
                     <li class="navigation__item">
@@ -372,12 +372,15 @@
                         </form><!-- /.header-search -->
                     </div><!-- /.search-popup -->
                 </div><!-- /.header-tools__item hover-container -->
-
                 @if (SignInManager.IsSignedIn(User))
                 {
+                    Task<ProgramUser> GetCurrentUserAsync() => UserManager.GetUserAsync(User);
+
+                    var user = await GetCurrentUserAsync();
+
                     <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Hello @User.Identity.Name
+                            Hello 
                         </button>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" asp-controller="Account" asp-action="Logout">Logout</a></li>
@@ -388,11 +391,12 @@
                 {
                     <div class="header-tools__item hover-container">
                         <a class="header-tools__item js-open-aside" href="#" data-aside="customerForms">
-                            <svg class="d-block" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_user" /></svg>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_user" /></svg>
                         </a>
                     </div>
                 }
-               
+
+
 
                 <a class="header-tools__item" href="account_wishlist.html">
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_heart" /></svg>

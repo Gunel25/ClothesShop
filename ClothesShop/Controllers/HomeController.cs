@@ -1,5 +1,6 @@
 ﻿using ClothesShop.DAL;
 using ClothesShop.Models;
+using ClothesShop.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -70,7 +71,12 @@ namespace ClothesShop.Controllers
         }
         public IActionResult shop5()
         {
-            return View();
+            ShopVM  model = new ShopVM
+            {
+                categories = appDbContext.Categories.Where(x =>x.IsActive==true).ToList(),
+                products = appDbContext.Products.ToList(),
+            };
+            return View(model);
         }
       
         public IActionResult Privacy()

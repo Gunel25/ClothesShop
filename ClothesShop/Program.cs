@@ -3,6 +3,7 @@ using ClothesShop.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Data.Common;
+using ClothesShop.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,7 +14,7 @@ builder.Services.AddDbContext<AppDbContext>(option =>
     option.UseSqlServer(builder.Configuration.GetConnectionString("DbConnection"));
 });
 
-builder.Services.AddIdentity<ProgramUser, IdentityRole>()
+builder.Services.AddIdentity<ProgramUser, IdentityRole<int>>()
     .AddEntityFrameworkStores<AppDbContext>()
     .AddDefaultTokenProviders();
 
@@ -34,7 +35,20 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.SignIn.RequireConfirmedPhoneNumber = false; //telefon doğrulaması
 });
 
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.AccessDeniedPath = "/Account/AccessDenied";
+});
+builder.Services.AddScoped<IEmailService,EmailService>();
+
 var app = builder.Build();
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var roleManager = services.GetRequiredService<RoleManager<IdentityRole<int>>>();
+    var userManager = services.GetRequiredService<UserManager<ProgramUser>>();
+    await SeedDataAsync(roleManager, userManager);
+}
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
@@ -47,7 +61,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
@@ -61,3 +75,39 @@ app.MapControllerRoute(
 
 
 app.Run();
+async Task SeedDataAsync(RoleManager<IdentityRole<int>> roleManager, UserManager<ProgramUser> userManager)
+{
+    if (!await roleManager.RoleExistsAsync("Admin"))
+    {
+        await roleManager.CreateAsync(new IdentityRole<int>("Admin"));
+    }
+    if (!await roleManager.RoleExistsAsync("User"))
+    {
+        await roleManager.CreateAsync(new IdentityRole<int>("User"));
+    }
+
+    var adminEmail = "cabbarligunel0899@gmail.com";
+    var adminUser = await userManager.FindByEmailAsync(adminEmail);
+    if (adminUser == null)
+    {
+        var programUser = new ProgramUser
+        {
+            Email = adminEmail,
+            UserName = "cabbarligunel0899@gmail.com",
+            Name = "cabbarligunel0899@gmail.com",
+        };
+        var result = await userManager.CreateAsync(programUser, "Gunel123!");
+        if (result.Succeeded)
+        {
+            await userManager.AddToRoleAsync(programUser, "Admin");
+        }
+        else
+        {
+            // Kullan?c? zaten mevcutsa, rolünü kontrol et ve ekle
+            if (!await userManager.IsInRoleAsync(adminUser, "Admin"))
+            {
+                await userManager.AddToRoleAsync(adminUser, "Admin");
+            }
+        }
+    }
+}

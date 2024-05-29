@@ -1,4 +1,7 @@
 ﻿@model Products
+@section Styles{
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+}
 <div class="page-content">
     <div class="container-fluid">
 
@@ -31,18 +34,35 @@
                                     Title
                                 </label>
                                 <input asp-for="Title" type="text" class="form-control" />
+                                <span asp-validation-for="Title" class="text-danger"></span>
+
                             </div>
                             <div class="col-md-3">
                                 <label>
                                     Description
                                 </label>
                                 <input asp-for="Description" type="text" class="form-control" />
+                                <span asp-validation-for="Description" class="text-danger"></span>
                             </div>
                             <div class="col-md-3">
                                 <label>
                                     Price
                                 </label>
                                 <input asp-for="Price" type="text" class="form-control" />
+                                <span asp-validation-for="Price" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-3">
+                                <label>
+                                    Esas sekil
+                                </label>
+                                <input asp-for="ImgUrlBaseFile" type="file" class="form-control" />
+                                <span asp-validation-for="ImgUrlBaseFile" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-3">
+                                <label>
+                                    Elave sekiller
+                                </label>
+                                <input asp-for="ImagesFiles" type="file" class="form-control" multiple/>
                             </div>
                             <div class="col-md-3">
                                 <label>
@@ -56,6 +76,32 @@
                                 </select>
                             </div>
                             <div class="col-md-3">
+                                <label>
+                                    Colors
+                                </label>
+                                <select class="form-select js-example-basic-multiple" asp-for="ColorsId" multiple>
+                                    @foreach (var item in ViewBag.Color)
+                                    {
+                                        <option value="@item.Id">@item.Name</option>
+                                    }
+                                </select>
+                                <span asp-validation-for="ColorsId" class="text-danger"></span>
+
+                            </div>
+                            <div class="col-md-3">
+                                <label>
+                                    Sizes
+                                </label>
+                                <select class="form-select js-example-basic-multiple" asp-for="SizesId" multiple>
+                                    @foreach (var item in ViewBag.Size)
+                                    {
+                                        <option value="@item.Id">@item.Name</option>
+                                    }
+                                </select>
+                                <span asp-validation-for="SizesId" class="text-danger"></span>
+
+                            </div>
+                            <div class="col-md-3">
                                 <button type="submit" class="btn btn-danger mt-3 btn-block"> Add database</button>
                             </div>
                         </form>
@@ -64,4 +110,13 @@
             </div>
         </div>
     </div>
-</div><!-- End Page-content -->
+</div>
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.js-example-basic-multiple').select2();
+        });
+    </script>
+}

@@ -19,6 +19,7 @@
                                     <th scope="col">Description</th>
                                     <th scope="col">Price</th>
                                     <th scope="col">Category</th>
+                                    <th scope="col">Image</th>
                                     <th scope="col">Operation</th>
                                 </tr>
                             </thead>
@@ -37,6 +38,9 @@
                                         </td>
                                         <td>
                                             @item.Category.Name
+                                        </td>
+                                        <td>
+                                        <img width="200" height="200" style="object-fit:cover" src="~/UploadProducts/@item.ImgUrlBase" />
                                         </td>
                                         <td>
                                             <a class="deleteBtn btn btn-danger" asp-area="Admin" asp-controller="Products" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
