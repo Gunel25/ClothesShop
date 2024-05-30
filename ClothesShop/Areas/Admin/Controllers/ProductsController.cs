@@ -9,7 +9,7 @@ using System;
 namespace ClothesShop.Controllers
 {
     [Area("Admin")]
-  //  [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     public class ProductsController : Controller
     {
         private readonly AppDbContext appDbContext;

@@ -13,8 +13,7 @@ namespace ClothesShop.Models
         [Required]
         public string Description { get; set; }
         [Required(ErrorMessage = "Price is required.")]
-        [Range(0.01, double.MaxValue, ErrorMessage = "Price must be a positive value.")]
-        public double Price { get; set; }
+        public decimal Price { get; set; }
         [ValidateNever]
         public string ImgUrlBase { get; set; }
         public int CategoryId { get; set; }

@@ -27,8 +27,6 @@
                             {
                                 <option value="1">@item.Name</option>
                             }
-
-
                         </select>
                         <div class="search-field__input-wrapper mb-3">
                             <input type="text" name="search_text" class="search-field__input form-control form-control-sm border-light border-2" placeholder="SEARCH">
@@ -40,7 +38,6 @@
                                     <span class="me-auto">@item.Name</span>
                                 </li>
                             }
-
                         </ul>
                     </div>
                 </div>
@@ -242,10 +239,10 @@
                             <div class="swiper-container background-img js-swiper-slider" data-settings='{"resizeObserver": true}'>
                                 <div class="swiper-wrapper">
                                     <div class="swiper-slide">
-                                        <a href="product1_simple.html"><img loading="lazy" src="~/uploadProducts/@item.ImgUrlBase" width="510" height="618" alt="Cropped Faux leather Jacket" class="pc__img"></a>
+                                        <a asp-controller="Shop" asp-action="product2_detail" asp-route-id="@item.Id"><img loading="lazy" src="~/uploadProducts/@item.ImgUrlBase" width="510" height="618" alt="Cropped Faux leather Jacket" class="pc__img"></a>
                                     </div><!-- /.pc__img-wrapper -->
                                     <div class="swiper-slide">
-                                        <a href="product1_simple.html"><img loading="lazy" src="~/uploadProducts/@item.ImgUrlBase" width="510" height="618" alt="Cropped Faux leather Jacket" class="pc__img"></a>
+                                        <a asp-controller="Shop" asp-action="product2_detail" asp-route-id="@item.Id"><img loading="lazy" src="~/uploadProducts/@item.ImgUrlBase" width="510" height="618" alt="Cropped Faux leather Jacket" class="pc__img"></a>
                                     </div><!-- /.pc__img-wrapper -->
                                 </div>
                                 <span class="pc__img-prev"><svg width="7" height="11" viewBox="0 0 7 11" xmlns="http://www.w3.org/2000/svg"><use href="#icon_prev_sm" /></svg></span>
