@@ -16,10 +16,22 @@ namespace ClothesShop.Controllers
             appDbContext = _appDbContext;
         }
 
+        //public IActionResult Index()
+        //{
+        //  HomeVM homevm = new HomeVM();
+        //    {
+        //        Products = appDbContext.Products.Where(x => x.IsStock).ToList();
+        //        Sliders = appDbContext.Sliders.Where(x => x.IsCheck).ToList();
+        //    }
+        //    return View(homevm);
+        //}
         public IActionResult Index()
         {
-            List<Slider> list = new List<Slider>(); 
-            return View(appDbContext.Sliders.Where(x=>x.IsCheck !=false).ToList());
+            HomeVM homevm = new HomeVM();
+
+                homevm.Products = appDbContext.Products.Where(x => x.IsStock).ToList();
+                homevm.Sliders = appDbContext.Sliders.Where(x => x.IsCheck).ToList();
+                return View(homevm);
         }
         public IActionResult account_edit()
         {

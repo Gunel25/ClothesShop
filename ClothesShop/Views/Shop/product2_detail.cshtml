@@ -1,6 +1,6 @@
 ﻿@model ManyModels
 <div class="mb-md-1 pb-md-3 prd"></div>
-<section class="product-single container">
+<section class="product-single container" >
     <div class="row">
         <div class="col-lg-7">
             <div class="product-single__media" data-media-type="vertical-thumbnail">
@@ -74,6 +74,7 @@
                 <p>Phasellus sed volutpat orci. Fusce eget lore mauris vehicula elementum gravida nec dui. Aenean aliquam varius ipsum, non ultricies tellus sodales eu. Donec dignissim viverra nunc, ut aliquet magna posuere eget.</p>
             </div>
             <form name="addtocart-form" method="post" action="@Url.Action("AddToCartt","Shop")" >
+                <input type="hyden" name="productId" value="@Model.Products.Id" />
                 <div class="product-single__swatches">
                     <div class="product-swatch text-swatches">
                         <label>Sizes</label>
@@ -91,12 +92,12 @@
                     <div class="product-swatch color-swatches">
                         <label>Color</label>
                         <div class="swatch-list">
-                            <input type="radio" name="color" id="swatch-11">
-                            <label class="swatch swatch-color js-swatch" for="swatch-11" aria-label="Black" data-bs-toggle="tooltip" data-bs-placement="top" title="Black" style="color: #222"></label>
-                            <input type="radio" name="color" id="swatch-12" checked>
-                            <label class="swatch swatch-color js-swatch" for="swatch-12" aria-label="Red" data-bs-toggle="tooltip" data-bs-placement="top" title="Red" style="color: #C93A3E"></label>
-                            <input type="radio" name="color" id="swatch-13">
-                            <label class="swatch swatch-color js-swatch" for="swatch-13" aria-label="Grey" data-bs-toggle="tooltip" data-bs-placement="top" title="Grey" style="color: #E4E4E4"></label>
+                            @foreach (var colors in Model.Products.ColorToProducts.Select(pc => pc.Color))
+                            {
+                                <input type="radio" name="SelectedColorsId" id=@colors.Id value=@colors.Id>
+
+                                <label class="swatch swatch-color js-swatch" for=@colors.Id aria-label="Black" data-bs-toggle="tooltip" data-bs-placement="top" title=@colors.Name style="color: #222"></label>
+                            }
                         </div>
                     </div>
                 </div>
@@ -106,7 +107,7 @@
                         <div class="qty-control__reduce">-</div>
                         <div class="qty-control__increase">+</div>
                     </div><!-- .qty-control -->
-                    <button type="submit" class="btn btn-primary btn-addtocart js-open-aside" data-aside="cartDrawer">Add to Cart</button>
+                    <button type="submit" class="btn btn-primary btn-addtocart " data-aside="cartDrawer">Add to Cart</button>
                 </div>
             </form>
             <div class="product-single__addtolinks">

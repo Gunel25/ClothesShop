@@ -1,4 +1,4 @@
-﻿@model List<Slider>;
+﻿@model HomeVM;
 <section class="swiper-container js-swiper-slider slideshow h-xs-25rem bg-white"
          data-settings='{
         "autoplay": {
@@ -13,7 +13,7 @@
         "loop": true
       }'>
     <div class="swiper-wrapper">
-        @foreach (var item in Model)
+        @foreach (var item in Model.Sliders)
         {
             <div class="swiper-slide">
                 <div class="overflow-hidden position-relative h-100">

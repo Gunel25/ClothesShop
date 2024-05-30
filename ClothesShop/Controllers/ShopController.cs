@@ -18,7 +18,9 @@ namespace ClothesShop.Controllers
             ShopVM model = new ShopVM
             {
                 categories = appDbContext.Categories.Where(x => x.IsActive == true).ToList(),
-                products = appDbContext.Products.ToList(),
+                products = appDbContext.Products.Where(x => x.IsStock == true).ToList(),
+                Sizes = appDbContext.Sizes.ToList(),
+                Colors = appDbContext.Colors.ToList(),
             };
             return View(model);
         }
@@ -95,12 +97,21 @@ namespace ClothesShop.Controllers
             decimal subTotal = cart.Sum(item => item.Quantity * item.Price);
             decimal Total = cart.Sum(item => item.Quantity * item.Price);
 
-            return RedirectToAction("Index", "Shop");
+            return RedirectToAction("shop5", "Shop");
         }
 
         public IActionResult shop_cart()
         {
-            return View();
+          var cart = HttpContext.Session.GetJson<List<CartItem>>("Cart") ?? new List<CartItem>();
+
+            CartVM cartVM = new CartVM()
+            {
+                CartItems = cart,
+                GrandTotal = cart.Sum(x=>x.Quantity*x.Price),
+            };
+            var shopvm =new ShopVM 
+            { CartVM = cartVM };
+            return View(shopvm);
         }
     }
 }

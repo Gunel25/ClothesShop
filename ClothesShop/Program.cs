@@ -40,7 +40,12 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.AccessDeniedPath = "/Account/AccessDenied";
 });
 builder.Services.AddScoped<IEmailService,EmailService>();
-
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30); // Oturumun ne kadar süre aktif kalaca??n? belirleyin
+    options.Cookie.HttpOnly = true; // XSS korumas? için
+    options.Cookie.IsEssential = true; // Oturum çerezlerinin temel oldu?undan emin olun
+});
 var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
@@ -57,17 +62,13 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-//builder.Services.AddSession(options =>
-//{
-//    options.IdleTimeout = TimeSpan.FromMinutes(30); // Oturumun ne kadar süre aktif kalaca??n? belirleyin
-//    options.Cookie.HttpOnly = true; // XSS korumas? için
-//    options.Cookie.IsEssential = true; // Oturum çerezlerinin temel oldu?undan emin olun
-//}); 
+
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseSession();
 app.UseAuthentication();
 app.UseAuthorization();
 
