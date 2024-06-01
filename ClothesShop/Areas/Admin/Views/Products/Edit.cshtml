@@ -6,18 +6,17 @@
 
 }
 <div class="page-content">
-    <div class="container-fluid">
+    <div class="container-fluid pt-5 pl-5">
 
         <!-- start page title -->
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                    <h4 class="mb-sm-0 font-size-18">Jobs Grid</h4>
+                    <h4 class="mb-sm-0 font-size-18">Products Edit</h4>
 
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="javascript: void(0);">Jobs</a></li>
-                            <li class="breadcrumb-item active">Jobs Grid</li>
+                            
                         </ol>
                     </div>
 
@@ -37,7 +36,7 @@
                                     Title
                                 </label>
                                 <input asp-for="Title" type="text" class="form-control" >
-                                <span asp-validation-for="Title" class="text-danger"></span>
+                                <span asp-validation-for="Title" class="text-danger" required></span>
 
                             </div>
                             <div class="col-md-3">
@@ -45,14 +44,14 @@
                                     Description
                                 </label>
                                 <input asp-for="Description" type="text" class="form-control"  />
-                                <span asp-validation-for="Description" class="text-danger"></span>
+                                <span asp-validation-for="Description" class="text-danger" required></span>
                             </div>
                             <div class="col-md-3">
                                 <label>
                                     Price
                                 </label>
                                 <input asp-for="Price" type="text" class="form-control"  />
-                                <span asp-validation-for="Price" class="text-danger"></span>
+                                <span asp-validation-for="Price" class="text-danger" required></span>
                             </div>
                             <div class="col-md-3">
                                 <label>
@@ -65,7 +64,7 @@
                                     }
                                 </select>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-3 mt-3">
                                 <label>
                                     Colors
                                 </label>
@@ -81,7 +80,7 @@
                                         }
                                     }
                                 </select>
-                                <span asp-validation-for="ColorsId" class="text-danger"></span>
+                                <span asp-validation-for="ColorsId" class="text-danger" required></span>
                             </div>
                             <div class="col-md-3">
                                 <label>
@@ -93,7 +92,7 @@
                                         <option value="@item.Id">@item.Name</option>
                                     }
                                 </select>
-                                <span asp-validation-for="SizesId" class="text-danger"></span>
+                                <span asp-validation-for="SizesId" class="text-danger" required></span>
 
                             </div>
                             <div class="col-md-12">
@@ -102,7 +101,7 @@
                                 </label>
                                 <img height="200" src="~/uploadProducts/@Model.ImgUrlBase" />
                                 <input asp-for="ImgUrlBaseFile" type="file" class="form-control mt-3" />
-                                <span asp-validation-for="ImgUrlBaseFile" class="text-danger" ></span>
+                                <span asp-validation-for="ImgUrlBaseFile" class="text-danger" required></span>
                             </div>
                             <div class="col-md-12">
                                 <label class="d-block">

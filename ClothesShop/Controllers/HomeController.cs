@@ -33,6 +33,10 @@ namespace ClothesShop.Controllers
                 homevm.Sliders = appDbContext.Sliders.Where(x => x.IsCheck).ToList();
                 return View(homevm);
         }
+        public IActionResult About()
+        {
+            return View();
+        }
         public IActionResult account_edit()
         {
             return View();

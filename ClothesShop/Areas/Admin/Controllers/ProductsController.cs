@@ -25,8 +25,8 @@ namespace ClothesShop.Controllers
         }
         public IActionResult Create()
         {
-           ViewBag.Category= appDbContext.Categories.ToList();
-           ViewBag.Color = appDbContext.Colors.ToList();
+            ViewBag.Category = appDbContext.Categories.Where(x => x.IsActive).ToList();
+            ViewBag.Color = appDbContext.Colors.ToList();
            ViewBag.Size = appDbContext.Sizes.ToList();
             return View();
         }
@@ -37,7 +37,7 @@ namespace ClothesShop.Controllers
 
             if (!ModelState.IsValid)
             {
-                ViewBag.Category = appDbContext.Categories.ToList();
+                ViewBag.Category = appDbContext.Categories.Where(x=>x.IsActive).ToList();
                 ViewBag.Color = appDbContext.Colors.ToList();
                 ViewBag.Size = appDbContext.Sizes.ToList();
                 return View(model);
@@ -110,7 +110,7 @@ namespace ClothesShop.Controllers
   
         public IActionResult Edit(int id)
         {
-            ViewBag.Category = appDbContext.Categories.ToList();
+            ViewBag.Category = appDbContext.Categories.Where(x => x.IsActive).ToList();
             ViewBag.Color = appDbContext.Colors.ToList();
             ViewBag.Size = appDbContext.Sizes.ToList();
 
@@ -230,7 +230,7 @@ namespace ClothesShop.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(Products productModel)
         {
-            ViewBag.Category = appDbContext.Categories.ToList();
+            ViewBag.Category = appDbContext.Categories.Where(x => x.IsActive).ToList();
             ViewBag.Color = appDbContext.Colors.ToList();
             ViewBag.Size = appDbContext.Sizes.ToList();
             var modelDb = await appDbContext.Products.FirstOrDefaultAsync(x => x.Id == productModel.Id);
