@@ -53,6 +53,13 @@
                             </div>
                             <div class="col-md-3">
                                 <label>
+                                    Stock
+                                </label>
+                                <input asp-for="StockQuantity" type="text" class="form-control" />
+                                <span asp-validation-for="StockQuantity" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-3">
+                                <label>
                                     Esas sekil
                                 </label>
                                 <input asp-for="ImgUrlBaseFile" type="file" class="form-control" />

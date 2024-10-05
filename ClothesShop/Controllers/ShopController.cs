@@ -69,6 +69,11 @@ namespace ClothesShop.Controllers
             var selectedColor = product.ColorToProducts.FirstOrDefault(pc => pc.ColorId == selectedColorId)?.Color;
             var selectedSize = product.SizeToProducts.FirstOrDefault(ps => ps.SizeId == selectedSizeId)?.Size;
 
+            if (selectedColor == null || selectedSize == null)
+            {
+                return BadRequest("Invalid color or size selection.");
+            }
+
             List<CartItem> cart = HttpContext.Session.GetJson<List<CartItem>>("Cart") ?? new List<CartItem>();
 
             CartItem cartItem = cart.FirstOrDefault(c => c.ProductId == productId && c.Color == selectedColor.Name && c.Size == selectedSize.Name);
@@ -85,17 +90,12 @@ namespace ClothesShop.Controllers
                     Price = product.Price,
                     Quantity = quantity,
                     ImgUrlBase = product.ImgUrlBase,
-                    Color = selectedColor?.Name ?? "Unknown",
-                    Size = selectedSize?.Name ?? "Unknown"
+                    Color = selectedColor.Name,
+                    Size = selectedSize.Name
                 });
             }
 
             HttpContext.Session.SetJson("Cart", cart);
-
-            // Calculate total prices
-            decimal grandTotal = cart.Sum(item => item.Total);
-            decimal subTotal = cart.Sum(item => item.Quantity * item.Price);
-            decimal Total = cart.Sum(item => item.Quantity * item.Price);
 
             return RedirectToAction("shop5", "Shop");
         }

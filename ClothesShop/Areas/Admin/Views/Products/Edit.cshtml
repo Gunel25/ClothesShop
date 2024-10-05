@@ -35,23 +35,30 @@
                                 <label>
                                     Title
                                 </label>
-                                <input asp-for="Title" type="text" class="form-control" >
-                                <span asp-validation-for="Title" class="text-danger" required></span>
+                                <input asp-for="Title" type="text" class="form-control" required>
+                                <span asp-validation-for="Title" class="text-danger" ></span>
 
                             </div>
                             <div class="col-md-3">
                                 <label>
                                     Description
                                 </label>
-                                <input asp-for="Description" type="text" class="form-control"  />
-                                <span asp-validation-for="Description" class="text-danger" required></span>
+                                <input asp-for="Description" type="text" class="form-control" required />
+                                <span asp-validation-for="Description" class="text-danger" ></span>
                             </div>
                             <div class="col-md-3">
                                 <label>
                                     Price
                                 </label>
-                                <input asp-for="Price" type="text" class="form-control"  />
+                                <input asp-for="Price" type="text" class="form-control" required />
                                 <span asp-validation-for="Price" class="text-danger" required></span>
+                            </div>
+                            <div class="col-md-3">
+                                <label>
+                                    Stock
+                                </label>
+                                <input asp-for="StockQuantity" type="text" class="form-control" required />
+                                <span asp-validation-for="StockQuantity" class="text-danger" required></span>
                             </div>
                             <div class="col-md-3">
                                 <label>
@@ -68,7 +75,7 @@
                                 <label>
                                     Colors
                                 </label>
-                                <select class="form-select js-example-basic-multiple" asp-for="ColorsId" multiple>
+                                <select class="form-select js-example-basic-multiple" asp-for="ColorsId" multiple required>
                                     @foreach (var item in ViewBag.Color)
                                     {
                                         @if (Model.ColorsId.Any(x => x == item.Id))
@@ -80,19 +87,19 @@
                                         }
                                     }
                                 </select>
-                                <span asp-validation-for="ColorsId" class="text-danger" required></span>
+                                <span asp-validation-for="ColorsId" class="text-danger" ></span>
                             </div>
                             <div class="col-md-3">
                                 <label>
                                     Sizes
                                 </label>
-                                <select class="form-select js-example-basic-multiple" asp-for="SizesId" multiple>
+                                <select class="form-select js-example-basic-multiple" asp-for="SizesId" multiple required>
                                     @foreach (var item in ViewBag.Size)
                                     {
                                         <option value="@item.Id">@item.Name</option>
                                     }
                                 </select>
-                                <span asp-validation-for="SizesId" class="text-danger" required></span>
+                                <span asp-validation-for="SizesId" class="text-danger"></span>
 
                             </div>
                             <div class="col-md-12">
@@ -100,7 +107,7 @@
                                     Esas sekil
                                 </label>
                                 <img height="200" src="~/uploadProducts/@Model.ImgUrlBase" />
-                                <input asp-for="ImgUrlBaseFile" type="file" class="form-control mt-3" />
+                                <input asp-for="ImgUrlBaseFile" type="file" class="form-control mt-3"  />
                                 <span asp-validation-for="ImgUrlBaseFile" class="text-danger" required></span>
                             </div>
                             <div class="col-md-12">

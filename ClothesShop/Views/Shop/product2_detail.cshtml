@@ -50,11 +50,6 @@
                     <span class="breadcrumb-separator menu-link fw-medium ps-1 pe-1">/</span>
                     <a href="#" class="menu-link menu-link_us-s text-uppercase fw-medium">The Shop</a>
                 </div><!-- /.breadcrumb -->
-
-                <div class="product-single__prev-next d-flex align-items-center justify-content-between justify-content-md-end flex-grow-1">
-                    <a href="product1_simple.html" class="text-uppercase fw-medium"><svg class="mb-1px" width="10" height="10" viewBox="0 0 25 25" xmlns="http://www.w3.org/2000/svg"><use href="#icon_prev_md" /></svg><span class="menu-link menu-link_us-s">Prev</span></a>
-                    <a href="product3_external.html" class="text-uppercase fw-medium"><span class="menu-link menu-link_us-s">Next</span><svg class="mb-1px" width="10" height="10" viewBox="0 0 25 25" xmlns="http://www.w3.org/2000/svg"><use href="#icon_next_md" /></svg></a>
-                </div><!-- /.shop-acs -->
             </div>
             <h1 class="product-single__name">Lightweight Puffer Jacket With a Hood</h1>
             <div class="product-single__rating">
@@ -68,35 +63,31 @@
                 <span class="reviews-note text-lowercase text-secondary ms-1">8k+ reviews</span>
             </div>
             <div class="product-single__price">
-                <span class="current-price">$449</span>
+                <span class="current-price">$@Model.Products.Price </span>
             </div>
             <div class="product-single__short-desc">
                 <p>Phasellus sed volutpat orci. Fusce eget lore mauris vehicula elementum gravida nec dui. Aenean aliquam varius ipsum, non ultricies tellus sodales eu. Donec dignissim viverra nunc, ut aliquet magna posuere eget.</p>
             </div>
-            <form name="addtocart-form" method="post" action="@Url.Action("AddToCartt","Shop")" >
-                <input type="hyden" name="productId" value="@Model.Products.Id" />
+            <form name="addtocart-form" method="post" action="@Url.Action("AddToCartt","Shop")">
+                <input type="hidden" name="productId" value="@Model.Products.Id" />
                 <div class="product-single__swatches">
                     <div class="product-swatch text-swatches">
                         <label>Sizes</label>
                         <div class="swatch-list">
-                            @foreach (var sizes in Model.Products.SizeToProducts.Select(pc=>pc.Size))
+                            @foreach (var sizes in Model.Products.SizeToProducts.Select(pc => pc.Size))
                             {
-                                <input type="radio" name="SelectedSizesId" id=@sizes.Id value=@sizes.Id>
-                                <label class="swatch js-swatch" for=@sizes.Id aria-label="Extra Small" data-bs-toggle="tooltip" data-bs-placement="top" title=@sizes.Name>@sizes.Name</label>
-
+                                <input type="radio" name="selectedSizeId" value="@sizes.Id" id="size-@sizes.Id" required>
+                                <label class="swatch js-swatch" for="size-@sizes.Id" aria-label="@sizes.Name" data-bs-toggle="tooltip" data-bs-placement="top" title="@sizes.Name">@sizes.Name</label>
                             }
-                           
                         </div>
-                        <a href="#" class="sizeguide-link" data-bs-toggle="modal" data-bs-target="#sizeGuide">Size Guide</a>
                     </div>
                     <div class="product-swatch color-swatches">
                         <label>Color</label>
                         <div class="swatch-list">
                             @foreach (var colors in Model.Products.ColorToProducts.Select(pc => pc.Color))
                             {
-                                <input type="radio" name="SelectedColorsId" id=@colors.Id value=@colors.Id>
-
-                                <label class="swatch swatch-color js-swatch" for=@colors.Id aria-label="Black" data-bs-toggle="tooltip" data-bs-placement="top" title=@colors.Name style="color: #222"></label>
+                                <input type="radio" name="selectedColorId" value="@colors.Id" id="color-@colors.Id" required>
+                                <label class="swatch swatch-color js-swatch" for="color-@colors.Id" aria-label="@colors.Name" data-bs-toggle="tooltip" data-bs-placement="top" title="@colors.Name" style="background-color:@colors.Code;"></label>
                             }
                         </div>
                     </div>
@@ -106,8 +97,8 @@
                         <input type="number" name="quantity" value="1" min="1" class="qty-control__number text-center">
                         <div class="qty-control__reduce">-</div>
                         <div class="qty-control__increase">+</div>
-                    </div><!-- .qty-control -->
-                    <button type="submit" class="btn btn-primary btn-addtocart " data-aside="cartDrawer">Add to Cart</button>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-addtocart" data-aside="cartDrawer">Add to Cart</button>
                 </div>
             </form>
             <div class="product-single__addtolinks">
@@ -143,7 +134,7 @@
                 </div>
                 <div class="meta-item">
                     <label>Categories:</label>
-                    <span>Casual & Urban Wear, Jackets, Men</span>
+                    <span>Casual & Urban </span>
                 </div>
                 <div class="meta-item">
                     <label>Tags:</label>

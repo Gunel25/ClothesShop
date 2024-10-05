@@ -31,6 +31,8 @@ namespace ClothesShop.Controllers
 
                 homevm.Products = appDbContext.Products.Where(x => x.IsStock).ToList();
                 homevm.Sliders = appDbContext.Sliders.Where(x => x.IsCheck).ToList();
+                homevm.Categories = appDbContext
+                .Categories.Include(x=>x.Products.Where(p=>p.IsStock == true && p.StockQuantity!=0 )).Where(c=>c.IsActive == true).ToList();
                 return View(homevm);
         }
         public IActionResult About()

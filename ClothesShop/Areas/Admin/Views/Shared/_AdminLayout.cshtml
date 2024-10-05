@@ -48,8 +48,9 @@
                                     <img src="~/assets/images/logo.svg" alt="" height="22">
                                 </span>
                                 <span class="logo-lg">
-                                    <img src="~/assets/images/logo-dark.png" alt="" height="17">
-                                </span>
+                                <img src="~/assets/images/logo.png" alt="Uomo" height="17" class="logo__image d-block">
+@*                                 <img src="~/assets/images/logo-dark.png" alt="" height="17">
+ *@                                </span>
                             </a>
 
                             <a href="index.html" class="logo logo-light">
@@ -149,6 +150,12 @@
                             <a asp-controller="Size" asp-action="GetSize" asp-area="Admin">
                                 <i class="bx bx-layout"></i>
                                 <span key="t-layouts">Sizes</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-controller="Order" asp-action="Orders" asp-area="Admin">
+                                <i class="bx bx-layout"></i>
+                                <span key="t-layouts">Orders</span>
                             </a>
                         </li>
                         <li>

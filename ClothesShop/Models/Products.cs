@@ -20,7 +20,7 @@ namespace ClothesShop.Models
         [ForeignKey("CategoryId")]
         [ValidateNever]
         public Category Category { get; set; }
-        [Required]
+        [ValidateNever]
         public int StockQuantity { get; set; }
         [ValidateNever]
         public bool IsStock { get; set; } = true;

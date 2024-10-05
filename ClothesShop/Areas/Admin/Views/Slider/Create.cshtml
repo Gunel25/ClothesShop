@@ -47,6 +47,8 @@
                                     İmage
                                 </label>
                                 <input asp-for="ImgFile" type="file" class="form-control" />
+                                <span asp-validation-for="ImgFile" class="text-danger"></span>
+
                             </div>
                             <div class="col-md-3">
                             <button type="submit" class="btn btn-danger mt-3 btn-block"> Add database</button>

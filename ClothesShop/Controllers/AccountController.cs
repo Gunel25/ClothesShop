@@ -71,6 +71,7 @@ namespace ClothesShop.Controllers
             if (!ModelState.IsValid)
             {
                 ModelState.AddModelError("", "Something incorrect");
+               
 
             }
             var user = await _userManager.FindByEmailAsync(model.Email);

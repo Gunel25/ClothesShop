@@ -120,6 +120,10 @@ namespace ClothesShop.Controllers
 
             model.ColorsId = new List<int>();
             model.SizesId = new List<int>();
+            if (model.StockQuantity == 0)
+            {
+                return RedirectToAction("Create");
+            }
             foreach (var item in dbColors)
             {
                 model.ColorsId.Add(item.ColorId);
@@ -243,7 +247,12 @@ namespace ClothesShop.Controllers
             modelDb.Title = productModel.Title;
             modelDb.Description = productModel.Description;
             modelDb.Price = productModel.Price;
+            modelDb.StockQuantity = productModel.StockQuantity;
             modelDb.CategoryId = productModel.CategoryId;
+            if (modelDb.StockQuantity == 0)
+            {
+                return RedirectToAction("Edit");
+            }
 
             if (productModel.ImgUrlBaseFile != null)
             {

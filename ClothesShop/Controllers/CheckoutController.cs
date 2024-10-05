@@ -1,55 +1,55 @@
-﻿using Azure;
-using ClothesShop.DAL;
+﻿using ClothesShop.DAL;
+using ClothesShop.Extensions;
 using ClothesShop.Models;
 using ClothesShop.ViewModels;
-using ClothesShop.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Stripe.Checkout;
-using Stripe.Climate;
 using Microsoft.EntityFrameworkCore;
-using System.Linq;
-using Stripe;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Stripe.Checkout;
 
 namespace ClothesShop.Controllers
 {
-    public class SalesController : Controller
+    public class CheckoutController : Controller
     {
         private readonly AppDbContext appDbContext;
         private readonly UserManager<ProgramUser> _userManager;
-        public SalesController(AppDbContext _appDbContext, UserManager<ProgramUser> userManager)
+
+        public CheckoutController(AppDbContext _appDbContext, UserManager<ProgramUser> userManager)
         {
             appDbContext = _appDbContext;
             _userManager = userManager;
         }
-        private static Models.Order tempOrder;
+
+        private static Order tempOrder;
         private static decimal total = 0;
+
         [HttpPost]
-        public IActionResult Checkout(Models.Order order)
+        public IActionResult Checkout(Order order)
         {
             var list = HttpContext.Session.GetJson<List<CartItem>>("Cart");
             if (list == null)
             {
-                return RedirectToAction("ShopCart", "Cart");
+                return RedirectToAction("ShopCart", "Shop");
             }
-           
             tempOrder = order;
-            var domain = "https://localhost:44325/";
+            var domain = "https://localhost:7273/";
             var options = new SessionCreateOptions()
             {
-                SuccessUrl = domain + $"CheckOut/OrderConfirmation",
-                CancelUrl = domain + "CheckOut/Login",
+                SuccessUrl = domain + $"Checkout/OrderConfirmation",
+                CancelUrl = domain + "Checkout/Payment",
                 LineItems = new List<SessionLineItemOptions>(),
                 Mode = "payment"
             };
+            decimal total = 0;
             foreach (var item in list)
             {
                 var sessionListItem = new SessionLineItemOptions
                 {
                     PriceData = new SessionLineItemPriceDataOptions
                     {
-                        UnitAmountDecimal = item.Price * 100,
+                        UnitAmountDecimal = item.Price*100,
                         Currency = "usd",
                         ProductData = new SessionLineItemPriceDataProductDataOptions
                         {
@@ -67,11 +67,31 @@ namespace ClothesShop.Controllers
             Response.Headers.Add("Location", session.Url);
             return new StatusCodeResult(303);
         }
+
         [HttpGet]
-        public IActionResult Billing()
+        public IActionResult Payment()
         {
+            ViewBag.StripePublishableKey = "your_publishable_key";
             return View();
         }
+
+
+
+        [HttpGet]
+        public IActionResult Invoice()
+        {
+            var user = _userManager.GetUserAsync(User).Result;
+            if (user == null)
+            {
+                return View("Failed");
+            }
+
+
+            var cartList = HttpContext.Session.GetJson<List<CartItem>>("Cart");
+
+            return View();
+        }
+
         public async Task<IActionResult> OrderConfirmation()
         {
             var service = new SessionService();
@@ -110,7 +130,19 @@ namespace ClothesShop.Controllers
             return View("Fail");
         }
 
+        //public IActionResult Success()
+        //{
+        //    var _order = appDbContext.Orders.Include(x => x.OrderItems).ThenInclude(x => x.Products).FirstOrDefault(x => x.Id == tempOrder.Id);
 
 
+        //    var viewModel = new ShopVM
+        //    {
+        //        Order = _order,
+        //        OrderItems = _order.OrderItems
+        //    };
+        //    return View(viewModel);
+        //}
     }
+
+
 }

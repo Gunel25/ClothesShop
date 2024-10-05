@@ -12,7 +12,8 @@ namespace ClothesShop.ViewModels
         public List<int> SelectedColors { get; set; }
         public List<int> SelectedSizes { get; set; }
         public CartVM CartVM { get; set; }
-        public Order Orders { get; set; }
+        public Order Order { get; set; }
+        public IEnumerable<OrderItem> OrderItems { get; set; }
 
 
     }

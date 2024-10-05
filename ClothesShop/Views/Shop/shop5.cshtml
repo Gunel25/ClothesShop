@@ -100,7 +100,7 @@
         </div><!-- /.accordion-item -->
 
  *@
-        <div class="accordion" id="color-filters">
+        @* <div class="accordion" id="color-filters">
             <div class="accordion-item mb-4 pb-3">
                 <h5 class="accordion-header" id="accordion-heading-1">
                     <button class="accordion-button p-0 border-0 fs-5 text-uppercase" type="button" data-bs-toggle="collapse" data-bs-target="#accordion-filter-2" aria-expanded="true" aria-controls="accordion-filter-2">
@@ -129,9 +129,33 @@
                     </div>
                 </div>
             </div><!-- /.accordion-item -->
+        </div> *@
+
+        <div class="accordion" id="color-filters">
+            <div class="accordion-item mb-4 pb-3">
+                <h5 class="accordion-header" id="accordion-heading-1">
+                    <button class="accordion-button p-0 border-0 fs-5 text-uppercase" type="button" data-bs-toggle="collapse" data-bs-target="#accordion-filter-2" aria-expanded="true" aria-controls="accordion-filter-2">
+                        Color
+                        <svg class="accordion-button__icon type2" viewBox="0 0 10 6" xmlns="http://www.w3.org/2000/svg">
+                            <g aria-hidden="true" stroke="none" fill-rule="evenodd">
+                                <path d="M5.35668 0.159286C5.16235 -0.053094 4.83769 -0.0530941 4.64287 0.159286L0.147611 5.05963C-0.0492049 5.27473 -0.049205 5.62357 0.147611 5.83813C0.344427 6.05323 0.664108 6.05323 0.860924 5.83813L5 1.32706L9.13858 5.83867C9.33589 6.05378 9.65507 6.05378 9.85239 5.83867C10.0492 5.62357 10.0492 5.27473 9.85239 5.06018L5.35668 0.159286Z" />
+                            </g>
+                        </svg>
+                    </button>
+                </h5>
+                <div id="accordion-filter-2" class="accordion-collapse collapse show border-0" aria-labelledby="accordion-heading-1" data-bs-parent="#color-filters">
+                    <div class="accordion-body px-0 pb-0">
+                        <div class="d-flex flex-wrap">
+                            @foreach (var item in Model.Colors)
+                            {
+                                <div class="swatch-color js-filter colors" style="color:@item.Code" data-color-id="@item.Id"> </div>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /.accordion-item -->
         </div><!-- /.accordion -->
-
-
         <div class="accordion" id="size-filters">
             <div class="accordion-item mb-4 pb-3">
                 <h5 class="accordion-header" id="accordion-heading-size">
@@ -162,7 +186,7 @@
 
 
 
-        <div class="accordion" id="price-filters">
+     @*    <div class="accordion" id="price-filters">
             <div class="accordion-item mb-4">
                 <h5 class="accordion-header mb-2" id="accordion-heading-price">
                     <button class="accordion-button p-0 border-0 fs-5 text-uppercase" type="button" data-bs-toggle="collapse" data-bs-target="#accordion-filter-price" aria-expanded="true" aria-controls="accordion-filter-price">
@@ -188,7 +212,7 @@
                     </div>
                 </div>
             </div><!-- /.accordion-item -->
-        </div><!-- /.accordion -->
+        </div><!-- /.accordion --> *@
     </div><!-- /.shop-sidebar -->
 
     <div class="shop-list flex-grow-1">
@@ -200,28 +224,7 @@
             </div><!-- /.breadcrumb -->
 
             <div class="shop-acs d-flex align-items-center justify-content-between justify-content-md-end flex-grow-1">
-                <select class="shop-acs__select form-select w-auto border-0 py-0 order-1 order-md-0" aria-label="Sort Items" name="total-number">
-                    <option selected>Default Sorting</option>
-                    <option value="1">Featured</option>
-                    <option value="2">Best selling</option>
-                    <option value="3">Alphabetically, A-Z</option>
-                    <option value="3">Alphabetically, Z-A</option>
-                    <option value="3">Price, low to high</option>
-                    <option value="3">Price, high to low</option>
-                    <option value="3">Date, old to new</option>
-                    <option value="3">Date, new to old</option>
-                </select>
-
-                <div class="shop-asc__seprator mx-3 bg-light d-none d-md-block order-md-0"></div>
-
-                <div class="col-size align-items-center order-1 d-none d-lg-flex">
-                    <span class="text-uppercase fw-medium me-2">View</span>
-                    <button class="btn-link fw-medium me-2 js-cols-size" data-target="products-grid" data-cols="2">2</button>
-                    <button class="btn-link fw-medium me-2 js-cols-size" data-target="products-grid" data-cols="3">3</button>
-                    <button class="btn-link fw-medium js-cols-size" data-target="products-grid" data-cols="4">4</button>
-                </div><!-- /.col-size -->
-
-                <div class="shop-filter d-flex align-items-center order-0 order-md-3 d-lg-none">
+                 <div class="shop-filter d-flex align-items-center order-0 order-md-3 d-lg-none">
                     <button class="btn-link btn-link_f d-flex align-items-center ps-0 js-open-aside" data-aside="shopFilter">
                         <svg class="d-inline-block align-middle me-2" width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg"><use href="#icon_filter" /></svg>
                         <span class="text-uppercase fw-medium d-inline-block align-middle">Filter</span>

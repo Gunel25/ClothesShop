@@ -1,24 +1,25 @@
 ﻿@model ShopVM
 
 <div class="mb-4 pb-4"></div>
-<section class="shop-checkout container">
+<section class="shop-checkout container mt-5">
+   
     <h2 class="page-title">Cart</h2>
     <div class="checkout-steps">
-        <a href="shop_cart.html" class="checkout-steps__item active">
+        <a  asp-controller="Shop" asp-action="shop_cart" class="checkout-steps__item active">
             <span class="checkout-steps__item-number">01</span>
             <span class="checkout-steps__item-title">
                 <span>Shopping Bag</span>
                 <em>Manage Your Items List</em>
             </span>
         </a>
-        <a href="shop_checkout.html" class="checkout-steps__item">
+        <a asp-controller="Checkout" asp-action="Invoice" class="checkout-steps__item">
             <span class="checkout-steps__item-number">02</span>
             <span class="checkout-steps__item-title">
                 <span>Shipping and Checkout</span>
                 <em>Checkout Your Items List</em>
             </span>
         </a>
-        <a href="shop_order_complete.html" class="checkout-steps__item">
+        <a  class="checkout-steps__item">
             <span class="checkout-steps__item-number">03</span>
             <span class="checkout-steps__item-title">
                 <span>Confirmation</span>
@@ -64,13 +65,13 @@
                             </td>
                             <td>
                                 <div class="qty-control position-relative">
-                                    <input type="number" name="quantity" value="3" min="1" class="qty-control__number text-center">
+                                        <input type="number" name=@item.Quantity value=@item.Quantity min="1" class="qty-control__number text-center">
                                     <div class="qty-control__reduce">-</div>
                                     <div class="qty-control__increase">+</div>
                                 </div><!-- .qty-control -->
                             </td>
                             <td>
-                                <span class="shopping-cart__subtotal">@item.Price</span>
+                                <span class="shopping-cart__subtotal">@item.Total</span>
                             </td>
                             <td>
                                 <a href="#" class="remove-cart">
@@ -170,12 +171,12 @@
                 </tbody>
             </table>
             <div class="cart-table-footer">
-                <form action="https://uomo-html.flexkitux.com/Demo4/" class="position-relative bg-body">
+              @*   <form action="https://uomo-html.flexkitux.com/Demo4/" class="position-relative bg-body">
                     <input class="form-control" type="text" name="coupon_code" placeholder="Coupon Code">
                     <input class="btn-link fw-medium position-absolute top-0 end-0 h-100 px-4" type="submit" value="APPLY COUPON">
-                </form>
-                <form action="/Shop/product2_detail" method="GET">
-                    <button type="submit" class="btn btn-light">UPDATE CART</button>
+                </form> *@
+                <form  method="GET">
+                    <a asp-controller="Shop" asp-action="product2_detail" class="btn btn-light">UPDATE CART</a>
                 </form>
             </div>
         </div>
@@ -223,10 +224,12 @@
                 </div>
                 <div class="mobile_fixed-btn_wrapper">
                     <div class="button-wrapper container">
-                        <button class="btn btn-primary btn-checkout">PROCEED TO CHECKOUT</button>
+                        
+                        <a asp-controller="Checkout" asp-action="Invoice" class="btn btn-primary btn-checkout">PROCEED TO CHECKOUT</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+ 
 </section>
